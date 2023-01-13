@@ -1,5 +1,5 @@
 # Card de produtos com exibição 3D
-Cartão para exibição de produtos em 3D, contendo código do produto, descrição e valor. 
+Cartão para exibição de produtos em 3D, contendo código do produto, descrição e valor. Desafio #boraCodar da rocketseat. 
 
 O projeto original consistia na exibição de uma imagem estática, onde ao clicar no botão '360' um gif era startado para representar a visão 3D do objeto, como mostrado a seguir: 
 
@@ -16,7 +16,7 @@ Em minha implementação foi adicionado recursos de modelos 3D onde o usuário p
 Todos os modelos 3D utilizados no projeto foram retirados do site:
 [Download Free 3D](https://downloadfree3d.com/).
 
-O objeto inicia com uma rotação automática, e o usuário pode clicar no botão '360' para permitir a interação com o objeto. A troca de objetos exibidosé feita através do botão de `adicionar à cesta` As imagens do projeto podem ser vistas a seguir:
+O objeto inicia com uma rotação automática, e o usuário pode clicar no botão '360' para permitir a interação com o objeto. A troca de objetos exibidos é feita através do botão de `adicionar à cesta` As imagens do projeto podem ser vistas a seguir:
 ![Imagem 1](./src/assets/project1.png)
 ![Imagem 2](./src/assets/project2.png)
 ![Gif projeto](./src/assets/giff.gif)
