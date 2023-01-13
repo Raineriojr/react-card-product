@@ -3,27 +3,52 @@ import React from 'react';
 import './App.css';
 
 // **Assets
-import Sofa from './assets/sofa.jpg';
-import GifSofa from './assets/gifsofa.gif';
+//import Sofa from './assets/sofa.jpg';
+//import GifSofa from './assets/gifsofa.gif';
 import Rotate from './assets/icons/rotate.png';
 import Close from './assets/icons/close.png'
-import { HouseScene } from './scenes/house-scene';
-import { CokeScene } from './scenes/coke-scene';
 
-const description = [
-  { cod: 420404, title: 'Coca cola geladinha', value: 10.00 },
-  { cod: 430405, title: 'Casa muito engraçada', value: 2.00 },
+import { CameraScene } from './scenes/camera-scene';
+import { XboxScene } from './scenes/xbox-scene';
+import { SwordScene } from './scenes/sword-scene';
+
+const items = [
+  { id: 0, cod: 420404, title: 'Controle XBOX', value: 79.99 },
+  { id: 1, cod: 420405, title: 'TecPix da Tecnomania', value: 322.90 },
+  { id: 2, cod: 420406, title: 'Espada lendária', value: 599.99 },
 ]
 
+let initialValue = items[0]
+
 function App() {
-  const [changeProduct, setChangeProduct] = React.useState<boolean>(false);
+  const [changeProduct, setChangeProduct] = React.useState(initialValue);
   const [isRotate, setIsRotation] = React.useState<boolean>(false);
 
   const handleAddProduct = () => {
-    setChangeProduct(!changeProduct);
+    if (changeProduct.id === items.length - 1) {
+      setChangeProduct(items[0])
+      return
+    }
+
+    let index = changeProduct.id + 1;
+    setChangeProduct(items[index]);
     setIsRotation(false)
   }
+
   const toggleRotationState = () => setIsRotation(!isRotate);
+
+  const RenderItem = () => {
+    switch (changeProduct.id) {
+      case 0:
+        return <XboxScene isRotate={isRotate} />
+
+      case 1:
+        return <CameraScene isRotate={isRotate} />
+
+      case 2:
+        return <SwordScene isRotate={isRotate} />
+    }
+  }
 
   return (
     <div className='container'>
@@ -47,19 +72,14 @@ function App() {
             src={isRotate ? Close : Rotate}
             onClick={toggleRotationState}
           />
-          
-          {changeProduct
-            ?
-            <CokeScene isRotate={isRotate}/>
-            :
-            <HouseScene isRotate={isRotate}/>
-          }
+
+          {RenderItem()}
         </div>
 
         <div className='descriptionContainer'>
-          <p id='code'>{`CÓDIGO: ${changeProduct ? description[0].cod : description[1].cod}`}</p>
-          <h1>{`${changeProduct ? description[0].title : description[1].title}`}</h1>
-          <p id='value'>{`R$ ${changeProduct ? description[0].value.toFixed(2) : description[1].value.toFixed(2)}`}</p>
+          <p id='code'>{`CÓDIGO: ${changeProduct.cod}`}</p>
+          <h1>{`${changeProduct.title}`}</h1>
+          <p id='value'>{`R$ ${changeProduct.value.toFixed(2)}`}</p>
 
           <button onClick={handleAddProduct}>
             <p>ADICIONAR À CESTA</p>
